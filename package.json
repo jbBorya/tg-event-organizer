@@ -1,0 +1,25 @@
+{
+  "name": "telegram-express-organizer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bot/index.js",
+    "dev": "nodemon ./bot/index.js",
+    "dropdb": "dropdb -U bot_user organizerdb && echo \"Dropped DB...\"",
+    "createdb": "createdb -U bot_user organizerdb && echo \"Created DB...\"",
+    "addtablesdb": "psql -U bot_user -d organizerdb -f ./db/event.sql -f ./db/registration.sql && echo \"Created tables...\"",
+    "insertTestData": "node ./db/insertTestData.js && echo \"Inserted test data...\"",
+    "configure-dev": "npm run configure && npm run dev",
+    "configure": "npm run dropdb && npm run createdb && npm run addtablesdb && npm run insertTestData && echo \"Succeded.\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.12",
+    "mustache": "^3.0.0",
+    "pg": "^7.4.3",
+    "slimbot": "^0.8.1"
+  }
+}
